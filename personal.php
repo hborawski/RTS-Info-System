@@ -24,12 +24,28 @@ if(isset($_POST)){
   $_SESSION['constrained']=1;
 }
 
-if(isset($_SESSION['constrained'])){
-  echo " <ul class='nav nav-tabs nav-stacked'>
-  <li><a href='all.html'>Constraint 1</a>
-  </li>
-</ul><br>";
+$mysql_host = "mysql9.000webhost.com";
+$mysql_database = "a2227395_db";
+$mysql_user = "a2227395_admin";
+$mysql_password = "1password";
+
+mysql_connect($mysql_host,$mysql_user,$mysql_password);
+@mysql_select_db($mysql_database);
+
+$query = "SELECT * FROM constraints";
+$result = mysql_query($query);
+
+if(mysql_num_rows($result)>0){
+  echo " <ul class='nav nav-tabs nav-stacked'>";
+  for($i=0; $i < mysql_num_rows($result);$i++){
+    $id = mysql_result($result, $i,"P_Id");
+    echo "<form action=\"delete.php\" method=\"post\"><li><a>Constraint $i</a><input type=\"hidden\" name=\"id\" value=\"$id\"><input style=\"float:right\" class=\"btn btn-primary btn-small\" type=\"submit\"  value=\"Delete\">
+      </li></form>";
+  }
 }
+echo "</ul><br>";
+
+mysql_close();
 echo "
 <button class=\"btn btn-primary\" onclick=\"window.location.href='constraint.html'\">Add Constraint</button>
 <br>
