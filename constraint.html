@@ -9,6 +9,9 @@
         <title>RTS Info System</title>
 </head>
 <body>
+  <?php
+session_start();
+?>
 <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <div class="navbar navbar-inverse">
@@ -70,7 +73,7 @@
 <br>
 <br>
 <form action="personal.html" method="post">
-<input type='hidden' name='add' value='1'>
-<input class="btn btn-primary btn-large" onclick="window.location.href='personal2.html'" value="Add Constraint">
+<input type='hidden' name='add' value="Hello World">
+<input class="btn btn-primary btn-large" onclick="window.location.href='personal.php'" value="Add Constraint">
 </form>
 </body>
